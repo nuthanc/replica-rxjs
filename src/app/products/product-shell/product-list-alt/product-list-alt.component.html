@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">Products</div>
+  <div class="card-body" *ngIf="products$ | async as products">
+    <table>
+      <tr *ngFor="let product of products; let i = index">
+        <td (click)="onSelectProduct(product.id, i)" [class.active]="selectedIndex === i" >
+          {{ product.productName }}
+          ({{ product.category }})
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

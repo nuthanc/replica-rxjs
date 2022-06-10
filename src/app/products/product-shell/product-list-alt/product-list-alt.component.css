@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+}
+
+tr {
+  border: 1px solid black;
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+td:hover {
+  cursor: pointer;
+}
+
+.active {
+  background-color: blue;
+  color: white;
+}

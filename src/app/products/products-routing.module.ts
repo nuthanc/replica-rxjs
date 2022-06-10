@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductsComponent } from './products.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductShellComponent } from './product-shell/product-shell.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProductsComponent,
+    component: ProductListComponent,
+  },
+  {
+    path: 'alternate',
+    component: ProductShellComponent,
   },
 ];
 

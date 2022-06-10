@@ -1,0 +1,30 @@
+<div class="card" *ngIf="selectedProduct$ | async as product">
+  <div class="card-header">Product Detail for: {{ product.productName }}</div>
+  <div class="card-body">
+    <div>Name: {{ product.productName }}</div>
+    <div>Code: {{ product.productCode }}</div>
+    <div>Category: {{ product.category }}</div>
+    <div>Description: {{ product.description }}</div>
+    <div>Price: {{ product.price }}</div>
+    <div>In Stock: {{ product.quantityInStock }}</div>
+
+    <div class="table-responsive" *ngIf="suppliers$ | async as suppliers">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>Supplier</th>
+            <th>Cost</th>
+            <th>Minimum Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let supplier of suppliers">
+            <td>{{ supplier.name }}</td>
+            <td>${{ supplier.cost.toFixed(2) }}</td>
+            <td>{{ supplier.minQuantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
