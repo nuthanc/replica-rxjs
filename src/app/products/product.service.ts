@@ -18,7 +18,7 @@ import { ProductCategoryService } from '../product-categories/product-category.s
 export class ProductService {
   newlyAddedProduct$ = new BehaviorSubject<Product[]>([]);
   selectedCategoryId$ = new BehaviorSubject<number>(0);
-  // newlyAddedProduct$ = new Subject<Product>();
+  // newlyAddedProduct$ = new Subject<Product>(); Author used Subject and asObservable
   productId = 15;
   
 
@@ -32,7 +32,7 @@ export class ProductService {
     .pipe(shareReplay(1));
 
   products$ = merge(this.fetchProducts$, this.newlyAddedProduct$).pipe(
-    scan((acc: Product[], products) => [...acc, ...products], [])
+    scan((acc: Product[], products) => [...acc, ...products], []) // Use of instanceof Array and for accumulator to get proper type,  use [] as Product[] as seed
   );
 
   // products$ = merge(

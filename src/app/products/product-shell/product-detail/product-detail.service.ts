@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, combineLatest, map, shareReplay, tap } from 'rxjs';
+import { Subject, combineLatest, map, shareReplay, tap, BehaviorSubject } from 'rxjs';
 import { Supplier } from 'src/app/suppliers/supplier';
 import { ProductListAltService } from '../product-list-alt/product-list-alt.service';
 
@@ -13,7 +13,8 @@ export class ProductDetailService {
     private productListAltService: ProductListAltService
   ) {}
 
-  selectedProductId$ = new Subject<number>();
+  private selectedProductId$ = new BehaviorSubject<number>(0);
+  // selectedProductId$ = new Subject<number>();
 
   fetchSuppliers$ = this.http
     .get<Supplier[]>('api/suppliers')
