@@ -47,3 +47,37 @@
 * merge combines multiple Observables by merging their emissions
   * When an items is emitted from any Observable, that item is emitted to its output Observable
   * It completes when all Input Observables complete
+
+### Why Caching?
+
+* Making http requests each time you navigate to a Page is not required for Applications that doesn't change data frequently
+* Only Highly Transaction based Applications like Flight Reservation or Movie tickets require http requests(Fresh Data) each time you navigate
+* Caching
+  * ImprovesResponsiveness
+  * Reduces bandwidth and network consumption
+  * Reduces Backend server load
+  * Reduces redundant computation
+
+### Declarative Caching Pattern
+
+* **shareReplay** operator shares its Input Observables with other subscribers
+* shareReplay(1)
+  * Replays the defined number of emissions on subscription, in this example the last emission(Since data streams emit once and complete)
+* Late subscribers will still get the buffered data even if the Observable completes
+* shareReplay is a multicast operator
+  * Returns a Subject that shares a single subscription to the underlying source
+* **share** operator is similar to shareReplay but by default
+  * It doesn't have a buffer
+  * Doesn't replay that buffer
+* We can set a configuration object
+* **shareReplay is a wrapper around the share operator**
+```ts
+share({
+  connector: () => new ReplaySubject(1),
+  resetOnComplete: false,
+  resetOnError: false,
+  resetOnRefCountZero: false
+})
+```
+* The location of shareReplay in the pipeline matters
+* The operations after the shareReplay do not get cached and gets re-executed on each emission

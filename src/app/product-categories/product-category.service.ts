@@ -13,5 +13,5 @@ export class ProductCategoryService {
   // }
   productCategories$ = this.http.get<ProductCategory[]>(
     'api/productCategories'
-  );
+  ); // Pipe and shareReplay here itself
 }
