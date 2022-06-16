@@ -25,6 +25,8 @@
 ### Reacting to Actions
 
 * Use of Subject and BehaviorSubject for Action Streams
+* Combine the action and data streams
+* Emit a value to the action stream when an action occurs
 * startWith for initial value for Subjects
 
 ### combineLatest, forkJoin and withLatestFrom
