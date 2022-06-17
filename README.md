@@ -81,3 +81,25 @@ share({
 ```
 * The location of shareReplay in the pipeline matters
 * The operations after the shareReplay do not get cached and gets re-executed on each emission
+
+### Cache Invalidation
+
+* Evaluate the fluidity of the data
+* User stays for a short time and exits the Application, invalidation is not required(cleared when the User exits)
+* Things to consider while invalidating:
+  * Invalidate the cache on a time interval
+  * Do not invalidate when the User is working
+    * Allow the User to control when the data is refreshed
+  * Always get fresh data on update operations
+
+```ts
+private refresh = new BehaviorSubject<void>(undefined);
+
+product$ = refresh.pipe(
+  mergeMap(() => this.http.get<Product[]>(this.url).pipe(
+    catchError(this.handleError)
+  ))
+)
+
+// refresh.next(undefined) when user clicks on Refresh or after a Timer
+```
