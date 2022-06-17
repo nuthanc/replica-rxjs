@@ -103,3 +103,10 @@ product$ = refresh.pipe(
 
 // refresh.next(undefined) when user clicks on Refresh or after a Timer
 ```
+
+### Higher Order Observable
+
+* Observables that emit other Observables
+* The Source is the Observable and the one present within is the Inner Observable
+* We shouldn't have nested Subscriptions within our code
+* Higher Order Mapping Operators flatten higher-order Observables
