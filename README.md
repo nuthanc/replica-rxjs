@@ -110,3 +110,30 @@ product$ = refresh.pipe(
 * The Source is the Observable and the one present within is the Inner Observable
 * We shouldn't have nested Subscriptions within our code
 * Higher Order Mapping Operators flatten higher-order Observables
+* Template can't bind to Higher Order Observables
+
+### Higher-order Mapping Operators
+
+* Family of Operators: xxxMap()
+* These Operators Automatically subscribe to/unsubscribe from the Inner Observables
+* They flatten the result and emit the resulting values to the Output Observable
+
+### concatMap
+
+* It waits for each inner Observable to complete before processing the next one
+* Concatenates their results in **sequence**
+* Think of this Operator like a Relay Race
+
+### mergeMap
+
+* It executes the inner Observables in **parallel**
+* Merges their results
+* Think of this Operator like a 800m race where 
+  * Runners start concurrently
+  * They all merge into the lower lanes
+  * The runners complete based on how quickly they finish
+
+### switchMap
+
+* Unsubscribes the prior inner Observable and switches to the new Inner Observable
+* Subscribes to 1 inner Observable at a time
