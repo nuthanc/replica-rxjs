@@ -21,6 +21,8 @@
 * Author used Subject or BehaviorSubject in Service when it is common to 2 or more Components, otherwise used it in Component itself
 * Use ChangeDetection.OnPush after using Reactive style
 * Use of Subjects for Error Message in Component
+* Add catchError for all http requests
+* Fetching all Suppliers in supplier.service.ts
 
 ### Reacting to Actions
 
@@ -155,3 +157,13 @@ todosForUser$ = this.userEnteredAction$
       )
   )
 ```
+
+### Related Data Streams
+
+* 2 Approaches
+  * Get it all
+    * Get all the related data beforehand
+    * combineLatest
+  * Just in time
+    * Make requests as and when required
+    * mergeMap
