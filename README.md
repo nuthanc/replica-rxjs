@@ -137,3 +137,21 @@ product$ = refresh.pipe(
 
 * Unsubscribes the prior inner Observable and switches to the new Inner Observable
 * Subscribes to 1 inner Observable at a time
+* Think of this Operator like a Coach who changes his mind as to which runner will run
+
+### Common use case for higher order Mapping Operators
+
+* To get data based on result of other retrieved data
+```ts
+todosForUser$ = this.userEnteredAction$
+  .pipe(
+    // Get the user given the username
+    switchMap(userName => 
+      this.http.get<User>(`${this.userUrl}?username=${userName}`))
+      .pipe(
+        // Get the todos given the user id
+        switchMap(user => 
+          this.http.get<ToDo[]>(`${this.todoUrl}?userId=${user.id}`))
+      )
+  )
+```
